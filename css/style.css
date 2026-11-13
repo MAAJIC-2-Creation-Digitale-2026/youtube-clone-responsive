@@ -1,0 +1,826 @@
+/* ==========================================================
+   YouTube clone · style.css
+   Version ORDINATEUR terminée (à partir de 1280 px de large).
+   Rangé en 6 zones : on ajoute chaque règle dans la bonne zone.
+
+   TON TRAVAIL : la zone 6 (tout en bas), les media queries.
+   On ne touche presque pas aux zones 1 à 5 : on les SURCHARGE en zone 6.
+   ========================================================== */
+
+
+/* ===== 1. VARIABLES ===== */
+
+/* Police Roboto chargée depuis Google Fonts.
+   @import se met TOUT EN HAUT du fichier, avant toute règle : sinon il est ignoré. */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+  /* Palette : nommée par le rôle, pas par la couleur */
+  --color-bg: #FFFFFF;          /* fond */
+  --color-text: #0F0F0F;        /* texte principal */
+  --color-muted: #606060;       /* texte secondaire : chaîne, vues, date */
+  --color-primary: #FF0000;     /* rouge YouTube : logo Shorts */
+  --color-accent: #065FD4;      /* bleu des liens « Se connecter » */
+  --color-accent-light: #DEF1FF;/* bleu très clair au survol de « Se connecter » */
+  --color-hover: #F2F2F2;       /* fond au survol */
+  --color-hover-dark: #E5E5E5;  /* fond au survol d'un bouton déjà gris */
+  --color-border: #E5E5E5;      /* lignes de séparation */
+  --color-overlay: rgb(0 0 0 / 80%); /* noir transparent des pastilles de durée */
+
+  /* Espacements */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 40px;
+
+  /* Arrondis */
+  --radius-sm: 4px;      /* pastille de durée */
+  --radius-md: 8px;      /* boutons de filtre, liens de la sidebar */
+  --radius-lg: 12px;     /* miniatures */
+  --radius-pill: 40px;   /* forme de pilule */
+
+  /* Tailles relevées sur YouTube */
+  --header-height: 56px;
+  --sidebar-width: 240px;
+  --avatar-size: 36px;
+  --suggestions-width: 400px;
+}
+
+
+/* ===== 2. RESET ===== */
+
+* {
+  box-sizing: border-box;  /* la largeur écrite inclut le padding et la bordure */
+}
+
+body, h1, h2, h3, p {
+  margin: 0;               /* enlève les marges que le navigateur ajoute tout seul */
+}
+
+img {
+  display: block;          /* plus d'espace vide sous les images */
+  max-width: 100%;         /* une image ne déborde jamais de son parent */
+}
+
+button {
+  font: inherit;           /* les boutons prennent la police du site */
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;          /* même couleur que le texte autour */
+  text-decoration: none;
+}
+
+
+/* ===== 3. BASE ===== */
+
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 1rem;         /* 16px */
+  line-height: 1.5;        /* interligne confortable */
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  padding-top: var(--header-height); /* le header est fixe : on lui laisse sa place */
+}
+
+h1 { font-size: 1.25rem; } /* 20px */
+h2 { font-size: 1.25rem; } /* 20px */
+h3 { font-size: 1rem; }    /* 16px : les titres YouTube sont petits */
+
+/* Toujours voir où on est au clavier (touche Tab) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Les icônes Material Symbols : une icône = un mot écrit dans un <span>.
+   Elles se règlent comme du TEXTE : font-size pour la taille, color pour la couleur. */
+.material-symbols-outlined {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* Texte caché à l'écran mais lu par les lecteurs d'écran (le h1 de l'accueil) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+/* ===== 4. MISE EN PAGE ===== */
+
+/* --- Header fixe, 3 groupes --- */
+.banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--space-4);
+  background-color: var(--color-bg);
+  z-index: 10;             /* reste au-dessus du contenu quand on défile */
+}
+
+.banner-start,
+.banner-end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.banner-center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;                 /* prend la place libre au milieu */
+  max-width: 720px;
+}
+
+/* --- #page met la sidebar et le main côte à côte --- */
+#page {
+  display: flex;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;          /* ne rétrécit jamais */
+  position: sticky;        /* reste en place quand on fait défiler les vidéos */
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;        /* défile toute seule si elle est trop longue */
+  padding: var(--space-3);
+}
+
+main {
+  flex: 1;                 /* prend toute la place qui reste */
+  min-width: 0;            /* autorise le main à rétrécir (sinon les filtres le font déborder) */
+  padding: var(--space-5);
+}
+
+/* --- Page vidéo : lecteur + suggestions côte à côte (fiche V3) --- */
+.page-video {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.lecteur {
+  flex: 1;                 /* c'est le lecteur qui s'adapte */
+  min-width: 0;
+}
+
+.suggestions {
+  width: var(--suggestions-width);
+  flex-shrink: 0;          /* la colonne de droite ne rétrécit jamais */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+
+/* ===== 5. COMPOSANTS ===== */
+
+/* --- Boutons ronds (menu, micro, notifications, 3 points) --- */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;      /* carré 40 × 40 → rond */
+}
+
+.icon-btn:hover {
+  background-color: var(--color-hover);
+}
+
+.icon-btn-grey {
+  background-color: var(--color-hover);
+}
+
+.icon-btn-grey:hover {
+  background-color: var(--color-hover-dark);
+}
+
+/* --- Logo --- */
+.logo img {
+  height: 20px;            /* une seule dimension : pas de déformation */
+}
+
+/* --- Barre de recherche --- */
+.search {
+  display: flex;
+  flex: 1;
+}
+
+.search-input {
+  flex: 1;                 /* le champ prend la place à côté du bouton */
+  min-width: 0;
+  height: 40px;
+  padding: 0 var(--space-4);
+  border: 1px solid #CCCCCC;
+  border-radius: var(--radius-pill) 0 0 var(--radius-pill); /* arrondi à gauche */
+  font: inherit;
+}
+
+.search-btn {
+  width: 64px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #CCCCCC;
+  border-left: none;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0; /* arrondi à droite */
+  background-color: #F8F8F8;
+}
+
+.search-btn:hover {
+  background-color: var(--color-hover);
+}
+
+/* La loupe seule ne sert qu'au téléphone : cachée sur ordinateur */
+.search-mobile {
+  display: none;
+}
+
+/* --- Bouton « Créer » --- */
+.btn-create {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 36px;
+  padding: 0 var(--space-4) 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-hover);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btn-create:hover {
+  background-color: var(--color-hover-dark);
+}
+
+/* --- Avatars : images rondes --- */
+.avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  object-fit: cover;       /* remplit le rond sans s'écraser */
+  flex-shrink: 0;
+}
+
+.avatar-small {
+  width: 32px;
+  height: 32px;
+}
+
+.avatar-link {
+  display: block;
+  margin-left: var(--space-2);
+}
+
+/* --- Sidebar --- */
+.sidebar section {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar h2 {
+  padding: var(--space-2) var(--space-3);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.sidebar p {
+  padding: 0 var(--space-3);
+  font-size: 0.875rem;     /* 14px */
+}
+
+.items a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+
+.items a:hover,
+.items a:focus-visible {
+  background-color: var(--color-hover);
+}
+
+/* Lien « Se connecter » en forme de pilule */
+.se-connecter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3);
+  padding: var(--space-1) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.se-connecter:hover,
+.se-connecter:focus-visible {
+  background-color: var(--color-accent-light);
+}
+
+/* Footer de la sidebar */
+.sidebar footer {
+  padding: var(--space-4) var(--space-3);
+  font-size: 0.75rem;      /* 12px */
+  color: var(--color-muted);
+}
+
+#links-primary,
+#links-secondary {
+  display: flex;
+  flex-wrap: wrap;         /* les liens passent à la ligne */
+  gap: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.sidebar footer a:hover,
+.sidebar footer a:focus-visible {
+  text-decoration: underline;
+}
+
+/* --- Filtres (fiche A1) --- */
+.filtres {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  overflow-x: auto;        /* trop de boutons ? la barre défile à l'horizontale */
+  margin-bottom: var(--space-5);
+}
+
+.filtres::-webkit-scrollbar {
+  display: none;           /* cache la barre de défilement */
+}
+
+.filtres button {
+  flex-shrink: 0;          /* un bouton ne rétrécit jamais */
+  padding: 6px var(--space-3);
+  border-radius: var(--radius-md);
+  background-color: var(--color-hover);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;     /* « Jeux vidéo » reste sur une ligne */
+}
+
+.filtres button:hover,
+.filtres button:focus-visible {
+  background-color: var(--color-hover-dark);
+}
+
+/* Le bouton sélectionné : on inverse les couleurs */
+.filtres button.active {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* La flèche au bout de la barre est un bouton rond, pas un filtre */
+.filtres .filtres-suite {
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+/* --- Grille de vidéos (fiche A2) : flexbox + flex-wrap, pas de CSS Grid --- */
+.videos {
+  display: flex;
+  flex-wrap: wrap;         /* les cartes passent à la ligne */
+  gap: var(--space-6) var(--space-4); /* 40px entre les lignes · 16px entre les colonnes */
+}
+
+/* --- Une carte vidéo --- */
+.video-card {
+  /* 3 cartes par ligne : (largeur - 2 écarts) / 3 */
+  width: calc((100% - 2 * var(--space-4)) / 3);
+}
+
+/* La miniature : un lien qui sert de repère aux pastilles (position: relative) */
+.miniature {
+  position: relative;
+  display: block;
+}
+
+.miniature img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;       /* recadre l'image si elle n'est pas pile en 16/9 */
+  border-radius: var(--radius-lg);
+}
+
+/* La pastille de durée, posée par-dessus la miniature */
+.duree {
+  position: absolute;
+  right: var(--space-2);
+  bottom: var(--space-2);
+  padding: 1px var(--space-1);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-overlay);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* .video-infos : avatar, texte et 3 points sur une ligne */
+.video-infos {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.video-texte {
+  flex: 1;                 /* le texte prend la place entre l'avatar et les 3 points */
+  min-width: 0;
+}
+
+.video-texte h3 {
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: var(--space-1);
+}
+
+.video-texte p {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+/* Les 3 points n'apparaissent qu'au survol de la carte */
+.btn-3-points {
+  opacity: 0;
+}
+
+.video-card:hover .btn-3-points,
+.btn-3-points:focus-visible {
+  opacity: 1;
+}
+
+/* --- Carte sponsorisée (fiche A4) : on ne corrige que ce qui change --- */
+.sponsorisee .fleche {
+  position: absolute;
+  right: var(--space-2);
+  bottom: var(--space-2);
+  display: flex;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-overlay);
+  color: #FFFFFF;
+}
+
+.sponsorisee .description-pub {
+  display: -webkit-box;    /* coupe le texte après 2 lignes avec « … » */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sponsorisee .mention-pub {
+  margin-top: var(--space-1);
+  color: var(--color-text);
+  font-size: 0.75rem;
+}
+
+/* --- Section Shorts (fiche A3) --- */
+.shorts {
+  margin: var(--space-6) 0;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.shorts-entete {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.logo-shorts {
+  color: var(--color-primary);
+  font-variation-settings: "FILL" 1; /* icône pleine au lieu de contour */
+}
+
+.shorts-liste {
+  display: flex;           /* toutes les cartes sur UNE ligne */
+  gap: var(--space-4);
+  overflow-x: auto;        /* la 6e carte sort de l'écran au lieu de casser la ligne */
+}
+
+.short-card {
+  width: 210px;
+  flex-shrink: 0;
+}
+
+.short-card .miniature img {
+  aspect-ratio: 9 / 16;    /* format vertical */
+}
+
+.short-texte {
+  margin-top: var(--space-2);
+}
+
+.short-texte h3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.short-texte p {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+/* --- Lecteur (fiche V1) : l'iframe garde le format 16/9 --- */
+.video-cadre iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background-color: #000000;
+}
+
+.lecteur h1 {
+  margin-top: var(--space-3);
+  font-weight: 700;
+}
+
+/* Ligne de la chaîne : chaîne à gauche, boutons à droite */
+.chaine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.chaine-gauche,
+.chaine-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.chaine-actions {
+  gap: var(--space-2);
+}
+
+.avatar-chaine {
+  width: 40px;
+  height: 40px;
+}
+
+.abonnes {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+.btn-abonner {
+  height: 36px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.btn-abonner:hover {
+  background-color: #272727;
+}
+
+/* Boutons en pilule : J'aime, Partager, Télécharger, Enregistrer */
+.btn-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 36px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-hover);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.btn-pill:hover {
+  background-color: var(--color-hover-dark);
+}
+
+.btn-pill .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* Description sur fond gris */
+.description {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-hover);
+  font-size: 0.875rem;
+}
+
+.afficher-plus {
+  font-weight: 500;
+}
+
+/* --- Commentaires (fiche V2) --- */
+.commentaires {
+  margin-top: var(--space-5);
+}
+
+.commentaires-entete {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-5);
+}
+
+.btn-trier {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* La ligne pour écrire : avatar + champ qui prend toute la place */
+.ajouter-commentaire {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.ajouter-commentaire input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-1) 0;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.avatar-commentaire {
+  width: 40px;
+  height: 40px;
+}
+
+/* Un commentaire : avatar à gauche, bloc texte à droite */
+.commentaire {
+  display: flex;
+  align-items: flex-start; /* surtout pas center : le texte est plus haut que l'avatar */
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  font-size: 0.875rem;
+}
+
+.commentaire-texte {
+  flex: 1;
+  min-width: 0;
+}
+
+.commentaire-auteur {
+  font-size: 0.8125rem;    /* 13px */
+  font-weight: 500;
+}
+
+.commentaire-auteur span {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.commentaire-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+.commentaire-actions .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.commentaire-actions button {
+  display: flex;
+  padding: var(--space-1);
+  border-radius: 50%;
+}
+
+.commentaire-actions .btn-repondre {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.commentaire-actions button:hover {
+  background-color: var(--color-hover);
+}
+
+.reponses {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* --- Suggestions (fiche V3) : tout le lien est cliquable --- */
+.suggestion {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+}
+
+.suggestion:hover,
+.suggestion:focus-visible {
+  background-color: var(--color-hover);
+}
+
+.suggestion .miniature {
+  width: 168px;            /* miniature fixe : on donne les 2 tailles */
+  height: 94px;
+  flex-shrink: 0;
+}
+
+.suggestion .miniature img {
+  height: 100%;
+  border-radius: var(--radius-md);
+}
+
+.suggestion-texte {
+  display: flex;
+  flex-direction: column;  /* titre, chaîne et vues les uns sous les autres */
+  min-width: 0;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+.suggestion-titre {
+  display: -webkit-box;    /* titre coupé après 2 lignes */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: var(--space-1);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+
+/* ===== 6. RESPONSIVE : À TOI DE JOUER ===== */
+
+/* On part de l'ordinateur et on descend (desktop first) : max-width.
+   Une media query ne réécrit QUE ce qui change à cette largeur.
+   Garde cet ordre (de la plus grande largeur à la plus petite) :
+   la règle écrite en dernier gagne. Toutes les consignes sont dans le README. */
+
+/* --- Petit ordinateur / tablette à l'horizontale : 1024 px et moins --- */
+@media (max-width: 1024px) {
+
+}
+
+/* --- Tablette : 768 px et moins --- */
+@media (max-width: 768px) {
+
+}
+
+/* --- Téléphone : 480 px et moins --- */
+@media (max-width: 480px) {
+
+}
