@@ -1,6 +1,6 @@
 # YouTube clone : la version responsive
 
-> **Mon site en ligne :** _colle ici le lien de ton site GitHub Pages (étape 6)_ https://[ton-pseudo].github.io/youtube-clone-responsive/
+> **Mon site en ligne :** _colle ici le lien de ton site GitHub Pages (partie 7)_ https://[ton-pseudo].github.io/youtube-clone-responsive/
 
 Tu as déjà fait un YouTube clone pour **ordinateur**. Ce dépôt t'en donne une version ordinateur **terminée** : tout le monde part du même code.
 
@@ -17,6 +17,7 @@ youtube-clone-responsive/
 ├── index.html      la page d'accueil (filtres, vidéos, Shorts)
 ├── video.html      la page d'une vidéo (lecteur, chaîne, commentaires, suggestions)
 ├── css/style.css   tout le style, rangé en 6 zones
+├── js/script.js    le petit JavaScript du site (déjà fait, tu n'y touches pas)
 ├── .github/        les modèles de tes issues (ta liste de tâches)
 └── README.md       ce mode d'emploi
 ```
@@ -24,6 +25,14 @@ youtube-clone-responsive/
 - Il n'y a **pas de dossier `img/`** : les images, la police et les icônes viennent d'Internet (des **CDN**). Il faut donc être connecté·e pour voir le site.
 - Les **icônes** sont des [Material Symbols](https://fonts.google.com/icons) : on écrit le nom de l'icône dans un `<span>`, par exemple `<span class="material-symbols-outlined">home</span>`. Elles se règlent comme du texte : `font-size` pour la taille, `color` pour la couleur.
 - Les noms de classes sont ceux des fiches (`.filtres`, `.videos`, `.video-card`, `.video-infos`, `.video-texte`, `.shorts`, `.lecteur`, `.chaine`, `.commentaire`, `.suggestions`…). Prends 10 minutes pour lire le HTML et le CSS avant de commencer.
+- Le **JavaScript** (`js/script.js`) est **déjà fait**. Il ne fait qu'**ajouter ou enlever une classe** quand on clique ; c'est **ton CSS** qui décide à quoi ressemble la page avec cette classe :
+
+| On clique sur… | Le JS ajoute la classe… | Ce que tu écris dans le CSS |
+|---|---|---|
+| le bouton menu ☰ | `sidebar-basculee` sur `<body>` | `body.sidebar-basculee .sidebar { … }` (tiroir sur tablette et téléphone) |
+| la loupe seule (téléphone) | `recherche-ouverte` sur le header | `.banner.recherche-ouverte … { … }` |
+| un filtre | `active` sur ce filtre | rien, c'est déjà stylé |
+| « …afficher plus » (page vidéo) | `description-ouverte` sur la description | rien, c'est déjà stylé |
 
 ---
 
@@ -119,7 +128,19 @@ Commite **souvent** (à chaque chose qui marche). Quand une largeur est terminé
 
 ---
 
-## 6. Mettre ton site en ligne (GitHub Pages)
+## 6. Récupérer une mise à jour du dépôt de départ
+
+Si ta formatrice ajoute quelque chose au dépôt de l'organisation **après** ton fork, ton fork ne se met **pas** à jour tout seul. Pour récupérer la nouveauté :
+
+1. **Commite et synchronise d'abord ton travail** dans VS Code (**Commit** puis **Sync Changes**).
+2. Sur la page GitHub de **ton fork**, sous le bouton vert **Code**, un bandeau indique *« This branch is X commits behind »*. Clique sur **Sync fork** › **Update branch**.
+3. Dans VS Code : panneau **Source Control** › **Sync Changes** (ou `…` › **Pull**) : les nouveaux fichiers arrivent sur ta machine.
+
+> ⚠️ Si GitHub affiche un bouton rouge **Discard X commits**, **ne clique pas dessus** : il effacerait ton travail. Appelle ta formatrice.
+
+---
+
+## 7. Mettre ton site en ligne (GitHub Pages)
 
 1. Sur **ton fork** : **Settings** › **Pages** (menu de gauche).
 2. **Source** : *Deploy from a branch* · **Branch** : `main` · dossier `/ (root)` › **Save**.
@@ -129,7 +150,7 @@ Commite **souvent** (à chaque chose qui marche). Quand une largeur est terminé
 
 ---
 
-## 7. Pour t'aider
+## 8. Pour t'aider
 
 - [W3Schools : responsive web design, les media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp)
 - [MDN : utiliser les media queries](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_media_queries/Using_media_queries)
