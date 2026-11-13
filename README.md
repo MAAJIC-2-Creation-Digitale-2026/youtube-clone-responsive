@@ -1,6 +1,6 @@
 # YouTube clone : la version responsive
 
-> **Mon site en ligne :** _colle ici le lien de ton site GitHub Pages (étape 6)_
+> **Mon site en ligne :** _colle ici le lien de ton site GitHub Pages (étape 6)_ https://[ton-pseudo].github.io/youtube-clone-responsive/
 
 Tu as déjà fait un YouTube clone pour **ordinateur**. Ce dépôt t'en donne une version ordinateur **terminée** : tout le monde part du même code.
 
