@@ -11,6 +11,8 @@
     <!-- Icônes Material Symbols (Google) : on écrit le NOM de l'icône dans un <span> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&amp;display=block" />
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Le seul fichier JavaScript : defer = il attend que la page soit lue avant de s'exécuter -->
+    <script src="js/script.js" defer></script>
   </head>
 
   <body>
@@ -18,7 +20,7 @@
     <header class="banner">
       <!-- Groupe gauche : menu + logo -->
       <div class="banner-start">
-        <button class="icon-btn" type="button" aria-label="Menu">
+        <button class="icon-btn btn-menu" type="button" aria-label="Menu" aria-controls="sidebar" aria-expanded="true">
           <span class="material-symbols-outlined" aria-hidden="true">menu</span>
         </button>
         <a href="index.html" class="logo">
@@ -61,7 +63,7 @@
     <!-- #page met la sidebar et le main côte à côte -->
     <div id="page">
       <!-- ===== NAVIGATION LATÉRALE ===== -->
-      <aside class="sidebar">
+      <aside class="sidebar" id="sidebar">
         <nav aria-label="Navigation principale">
           <section>
             <div class="items">
