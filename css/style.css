@@ -648,6 +648,8 @@ main {
 }
 
 .afficher-plus {
+  margin-top: var(--space-1);
+  padding: 0;
   font-weight: 500;
 }
 
@@ -803,12 +805,34 @@ main {
 }
 
 
+/* --- Interactions JavaScript (js/script.js) ---
+   Le JS ajoute ou enlève une classe ; ici, ce que ça change SUR ORDINATEUR. */
+
+/* Bouton menu ☰ : sur ordinateur, la sidebar « basculée » se cache */
+body.sidebar-basculee .sidebar {
+  display: none;
+}
+
+/* « …afficher plus » : la suite de la description n'apparaît qu'une fois ouverte */
+.description-suite {
+  display: none;
+}
+
+.description-ouverte .description-suite {
+  display: block;
+}
+
+
 /* ===== 6. RESPONSIVE : À TOI DE JOUER ===== */
 
 /* On part de l'ordinateur et on descend (desktop first) : max-width.
    Une media query ne réécrit QUE ce qui change à cette largeur.
    Garde cet ordre (de la plus grande largeur à la plus petite) :
-   la règle écrite en dernier gagne. Toutes les consignes sont dans le README. */
+   la règle écrite en dernier gagne. Toutes les consignes sont dans le README.
+
+   Les classes ajoutées par js/script.js, à utiliser dans tes media queries :
+   - body.sidebar-basculee .sidebar   → le bouton menu ☰ a été cliqué
+   - .banner.recherche-ouverte        → la loupe seule a été cliquée (téléphone) */
 
 /* --- Petit ordinateur / tablette à l'horizontale : 1024 px et moins --- */
 @media (max-width: 1024px) {
