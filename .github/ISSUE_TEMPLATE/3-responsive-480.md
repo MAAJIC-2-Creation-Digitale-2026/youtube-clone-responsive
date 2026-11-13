@@ -12,6 +12,7 @@ assignees: []
 ## À faire
 - [ ] **1 vidéo par ligne**, la carte prend toute la largeur.
 - [ ] **Header** : la barre de recherche et le micro disparaissent ; la **loupe seule** (`.search-mobile`, déjà dans le HTML) apparaît.
+- [ ] **Loupe** : un clic sur la loupe ouvre la barre de recherche sur toute la largeur du header ; le logo et les autres boutons se cachent. Le JavaScript est déjà fait : il ajoute la classe `recherche-ouverte` sur le header, à toi d'écrire `.banner.recherche-ouverte …` dans cette media query.
 - [ ] Les **3 points** des cartes sont **toujours visibles** (sur un téléphone, il n'y a pas de survol !).
 - [ ] **Shorts** : 2 Shorts côte à côte, les autres défilent à l'horizontale.
 - [ ] **Page vidéo** : les suggestions deviennent de grandes cartes, comme sur l'accueil (miniature au-dessus, pleine largeur, texte en dessous).
