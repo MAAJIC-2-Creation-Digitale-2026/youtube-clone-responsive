@@ -11,6 +11,7 @@ assignees: []
 
 ## À faire
 - [ ] La **sidebar disparaît** complètement.
+- [ ] **Bouton menu ☰** : un clic ouvre la sidebar **par-dessus la page**, en tiroir à gauche (`position: fixed`, toute la hauteur sous le header) ; un 2e clic la referme. Le JavaScript est déjà fait : il ajoute la classe `sidebar-basculee` sur `<body>`, à toi d'écrire `body.sidebar-basculee .sidebar { … }` dans cette media query.
 - [ ] **2 vidéos par ligne** sur l'accueil.
 - [ ] Le bouton **Créer** n'affiche plus que l'icône **+** (le mot « Créer » est caché).
 - [ ] Le `main` a un padding de 16 px.
