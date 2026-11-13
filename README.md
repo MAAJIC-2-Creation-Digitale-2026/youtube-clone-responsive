@@ -142,4 +142,4 @@ Commite **souvent** (à chaque chose qui marche). Quand une largeur est terminé
 ## Crédits
 
 Clone réalisé pour un exercice (L2 Création digitale, ILOI). YouTube et son logo sont des marques de Google.
-Miniatures : `i.ytimg.com` (vidéos publiques de YouTube) · icônes : [Material Symbols](https://fonts.google.com/icons) (licence Apache 2.0) · avatars : [UI Avatars](https://ui-avatars.com) · image de la pub fictive : [Lorem Picsum](https://picsum.photos) · police : [Roboto](https://fonts.google.com/specimen/Roboto). Les chiffres (vues, abonnés, commentaires) sont approximatifs ou inventés.
+Miniatures : `i.ytimg.com` (vidéos publiques de YouTube) · icônes : [Material Symbols](https://fonts.google.com/icons) (licence Apache 2.0) · avatars : [UI Avatars](https://ui-avatars.com) · photo de la pub fictive : cirque de Mafate, [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cirque_de_Mafate.jpg) · police : [Roboto](https://fonts.google.com/specimen/Roboto). Les chiffres (vues, abonnés, commentaires) sont approximatifs ou inventés.
