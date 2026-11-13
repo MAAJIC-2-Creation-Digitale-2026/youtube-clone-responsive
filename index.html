@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Indispensable pour le responsive : sans cette ligne, le téléphone affiche la page
+         comme un ordinateur, en tout petit, et les media queries ne servent à rien. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil – YouTube</title>
+    <!-- Tout vient d'Internet (CDN) : pas de dossier img/, fonts/ ou media/ dans ce dépôt -->
+    <link rel="icon" href="https://www.youtube.com/favicon.ico" />
+    <!-- Icônes Material Symbols (Google) : on écrit le NOM de l'icône dans un <span> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&amp;display=block" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- ===== HEADER : 3 groupes en flexbox ===== -->
+    <header class="banner">
+      <!-- Groupe gauche : menu + logo -->
+      <div class="banner-start">
+        <button class="icon-btn" type="button" aria-label="Menu">
+          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+        <a href="index.html" class="logo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube – Accueil" />
+        </a>
+      </div>
+
+      <!-- Groupe central : recherche + micro -->
+      <div class="banner-center">
+        <form class="search" action="#" role="search">
+          <input class="search-input" type="search" name="q" placeholder="Rechercher" aria-label="Rechercher" />
+          <button class="search-btn" type="submit" aria-label="Lancer la recherche">
+            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+          </button>
+        </form>
+        <button class="icon-btn icon-btn-grey" type="button" aria-label="Recherche vocale">
+          <span class="material-symbols-outlined" aria-hidden="true">mic</span>
+        </button>
+      </div>
+
+      <!-- Groupe droit : loupe seule (cachée sur ordinateur), créer, notifications, avatar -->
+      <div class="banner-end">
+        <!-- Ce bouton ne sert qu'au téléphone : il est caché sur ordinateur (voir .search-mobile dans le CSS) -->
+        <button class="icon-btn search-mobile" type="button" aria-label="Rechercher">
+          <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        </button>
+        <button class="btn-create" type="button">
+          <span class="material-symbols-outlined" aria-hidden="true">add</span>
+          <span>Créer</span>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Notifications">
+          <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
+        </button>
+        <a href="#" class="avatar-link" aria-label="Mon compte">
+          <img class="avatar avatar-small" src="https://ui-avatars.com/api/?name=Moi&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+        </a>
+      </div>
+    </header>
+
+    <!-- #page met la sidebar et le main côte à côte -->
+    <div id="page">
+      <!-- ===== NAVIGATION LATÉRALE ===== -->
+      <aside class="sidebar">
+        <nav aria-label="Navigation principale">
+          <section>
+            <div class="items">
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                <span>Accueil</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">smart_display</span>
+                <span>Shorts</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">subscriptions</span>
+                <span>Abonnements</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">account_box</span>
+                <span>Vous</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">history</span>
+                <span>Historique</span>
+              </a>
+            </div>
+          </section>
+
+          <section>
+            <p>
+              Connectez-vous à YouTube pour cliquer sur "J'aime", ajouter un
+              commentaire et vous abonner.
+            </p>
+            <a href="#" class="se-connecter">
+              <span class="material-symbols-outlined" aria-hidden="true">account_circle</span>
+              <span>Se connecter</span>
+            </a>
+          </section>
+
+          <section>
+            <h2>Explorer</h2>
+            <div class="items">
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">music_note</span>
+                <span>Musique</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">sensors</span>
+                <span>Direct</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">sports_esports</span>
+                <span>Jeux vidéo</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                <span>Plus</span>
+              </a>
+            </div>
+          </section>
+
+          <section>
+            <h2>Autres contenus YouTube</h2>
+            <div class="items">
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">workspace_premium</span>
+                <span>YouTube Premium</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">library_music</span>
+                <span>YouTube Music</span>
+              </a>
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">child_care</span>
+                <span>YouTube Kids</span>
+              </a>
+            </div>
+          </section>
+
+          <section>
+            <div class="items">
+              <a href="#">
+                <span class="material-symbols-outlined" aria-hidden="true">flag</span>
+                <span>Signalements</span>
+              </a>
+            </div>
+          </section>
+        </nav>
+
+        <!-- Footer DANS la sidebar -->
+        <footer>
+          <nav aria-label="Liens de pied de page">
+            <div id="links-primary">
+              <a href="#">Présentation</a>
+              <a href="#">Presse</a>
+              <a href="#">Droits d'auteur</a>
+              <a href="#">Nous contacter</a>
+              <a href="#">Créateurs</a>
+              <a href="#">Publicité</a>
+              <a href="#">Développeurs</a>
+            </div>
+            <div id="links-secondary">
+              <a href="#">Conditions d'utilisation</a>
+              <a href="#">Confidentialité</a>
+              <a href="#">Règles et sécurité</a>
+              <a href="#">Premiers pas sur YouTube</a>
+              <a href="#">Tester de nouvelles fonctionnalités</a>
+            </div>
+          </nav>
+          <p id="copyright">
+            <small>© 2026 Google LLC · Clone réalisé pour un exercice.</small>
+          </p>
+        </footer>
+      </aside>
+
+      <!-- ===== CONTENU PRINCIPAL ===== -->
+      <main>
+        <!-- Chaque page a un <h1> : ici il est caché à l'écran mais lu par les lecteurs d'écran -->
+        <h1 class="visually-hidden">Accueil de YouTube</h1>
+
+        <!-- ===== FILTRES (fiche A1) ===== -->
+        <div class="filtres">
+          <button type="button" class="active">Tous</button>
+          <button type="button">Musique</button>
+          <button type="button">Jeux vidéo</button>
+          <button type="button">Podcasts</button>
+          <button type="button">En direct</button>
+          <button type="button">Mixes</button>
+          <button type="button">Actualités</button>
+          <button type="button">La Réunion</button>
+          <button type="button">Maloya</button>
+          <button type="button">Animation</button>
+          <button type="button">Récemment publiées</button>
+          <button type="button">Nouveautés à découvrir</button>
+          <button class="icon-btn filtres-suite" type="button" aria-label="Filtres suivants">
+            <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+          </button>
+        </div>
+
+        <!-- ===== VIDÉOS : 2 lignes de 3 (fiches A2 et A4) ===== -->
+        <div class="videos">
+          <!-- Carte sponsorisée : 2 classes, elle garde tout de .video-card -->
+          <article class="video-card sponsorisee">
+            <a href="#" class="miniature">
+              <img src="https://picsum.photos/seed/bazaltik/640/360" alt="" />
+              <span class="fleche"><span class="material-symbols-outlined" aria-hidden="true">north_east</span></span>
+            </a>
+            <div class="video-infos">
+              <div class="video-texte">
+                <h3><a href="#">Randonnées guidées au Piton de la Fournaise</a></h3>
+                <p class="description-pub">Départ au lever du soleil, matériel fourni, petits groupes. Réserve ta sortie en ligne.</p>
+                <p class="mention-pub"><b>Sponsorisé</b> · Bazaltik Réunion</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Me at the zoo -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/jNQXAC9IVRw/mqdefault.jpg" alt="" />
+              <span class="duree">0:19</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=jawed&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Me at the zoo</a></h3>
+                <p>jawed</p>
+                <p>396 M de vues · il y a 20 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Michael Jackson - Smooth Criminal (Official Video) -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/h_D3VFfhvs4/mqdefault.jpg" alt="" />
+              <span class="duree">9:25</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Michael+Jackson&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Michael Jackson - Smooth Criminal (Official Video)</a></h3>
+                <p>Michael Jackson</p>
+                <p>1,1 Md de vues · il y a 15 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Rick Astley - Never Gonna Give You Up (Official Video) -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="" />
+              <span class="duree">3:33</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Rick+Astley&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Rick Astley - Never Gonna Give You Up (Official Video)</a></h3>
+                <p>Rick Astley</p>
+                <p>1,7 Md de vues · il y a 16 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Queen – Bohemian Rhapsody (Official Video Remastered) -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/fJ9rUzIMcZQ/mqdefault.jpg" alt="" />
+              <span class="duree">5:59</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Queen+Official&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Queen – Bohemian Rhapsody (Official Video Remastered)</a></h3>
+                <p>Queen Official</p>
+                <p>1,8 Md de vues · il y a 17 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/OPf0YbXqDm0/mqdefault.jpg" alt="" />
+              <span class="duree">4:31</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Mark+Ronson&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars</a></h3>
+                <p>Mark Ronson</p>
+                <p>5,5 Md de vues · il y a 11 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- ===== SHORTS (fiche A3) ===== -->
+        <section class="shorts" aria-labelledby="titre-shorts">
+          <div class="shorts-entete">
+            <span class="material-symbols-outlined logo-shorts" aria-hidden="true">smart_display</span>
+            <h2 id="titre-shorts">Shorts</h2>
+          </div>
+          <div class="shorts-liste">
+            <article class="short-card">
+              <a href="#" class="miniature">
+                <img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hq720.jpg" alt="" />
+              </a>
+              <div class="short-texte">
+                <h3><a href="#">Despacito, mais en 30 secondes</a></h3>
+                <p>8,6 M de vues</p>
+              </div>
+            </article>
+            <article class="short-card">
+              <a href="#" class="miniature">
+                <img src="https://i.ytimg.com/vi/9bZkp7q19f0/hq720.jpg" alt="" />
+              </a>
+              <div class="short-texte">
+                <h3><a href="#">La danse la plus copiée du web</a></h3>
+                <p>12 M de vues</p>
+              </div>
+            </article>
+            <article class="short-card">
+              <a href="#" class="miniature">
+                <img src="https://i.ytimg.com/vi/JGwWNGJdvx8/hq720.jpg" alt="" />
+              </a>
+              <div class="short-texte">
+                <h3><a href="#">Le refrain que tout le monde connaît</a></h3>
+                <p>4,1 M de vues</p>
+              </div>
+            </article>
+            <article class="short-card">
+              <a href="#" class="miniature">
+                <img src="https://i.ytimg.com/vi/60ItHLz5WEA/hq720.jpg" alt="" />
+              </a>
+              <div class="short-texte">
+                <h3><a href="#">Faded : la version lente</a></h3>
+                <p>2,3 M de vues</p>
+              </div>
+            </article>
+            <article class="short-card">
+              <a href="#" class="miniature">
+                <img src="https://i.ytimg.com/vi/hT_nvWreIhg/hq720.jpg" alt="" />
+              </a>
+              <div class="short-texte">
+                <h3><a href="#">On compte les étoiles ce soir</a></h3>
+                <p>980 k vues</p>
+              </div>
+            </article>
+            <article class="short-card">
+              <a href="#" class="miniature">
+                <img src="https://i.ytimg.com/vi/CevxZvSJLk8/hq720.jpg" alt="" />
+              </a>
+              <div class="short-texte">
+                <h3><a href="#">Le cri du tigre en coulisses</a></h3>
+                <p>1,5 M de vues</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===== VIDÉOS : 2 autres lignes de 3 ===== -->
+        <div class="videos">
+          <!-- Carte : Tame Impala - Loser (Official Video) -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/s3a4OQR-10M/mqdefault.jpg" alt="" />
+              <span class="duree">4:12</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Tame+Impala&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Tame Impala - Loser (Official Video)</a></h3>
+                <p>Tame Impala</p>
+                <p>3,2 M de vues · il y a 2 mois</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Photo a day for 15 years -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/Jbk-09u4gcv/mqdefault.jpg" alt="" />
+              <span class="duree">5:47</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Noah+Kalina&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Photo a day for 15 years</a></h3>
+                <p>Noah Kalina</p>
+                <p>9,8 M de vues · il y a 10 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Adele - Hello (Official Music Video) -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/YQHsXMglC9A/mqdefault.jpg" alt="" />
+              <span class="duree">6:07</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Adele&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Adele - Hello (Official Music Video)</a></h3>
+                <p>Adele</p>
+                <p>3,3 Md de vues · il y a 10 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : OneRepublic - Counting Stars (Official Music Video) -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/hT_nvWreIhg/mqdefault.jpg" alt="" />
+              <span class="duree">4:44</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=OneRepublic&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">OneRepublic - Counting Stars (Official Music Video)</a></h3>
+                <p>OneRepublic</p>
+                <p>4,1 Md de vues · il y a 12 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Wiz Khalifa - See You Again ft. Charlie Puth -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/RgKAFK5djSk/mqdefault.jpg" alt="" />
+              <span class="duree">3:58</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Wiz+Khalifa+Music&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Wiz Khalifa - See You Again ft. Charlie Puth</a></h3>
+                <p>Wiz Khalifa Music</p>
+                <p>6,4 Md de vues · il y a 10 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+          <!-- Carte : Shakira - Waka Waka (This Time for Africa) -->
+          <article class="video-card">
+            <a href="video.html" class="miniature">
+              <img src="https://i.ytimg.com/vi/pRpeEdMmmQ0/mqdefault.jpg" alt="" />
+              <span class="duree">3:31</span>
+            </a>
+            <div class="video-infos">
+              <img class="avatar" src="https://ui-avatars.com/api/?name=Shakira&amp;background=random&amp;color=fff&amp;size=72" alt="" />
+              <div class="video-texte">
+                <h3><a href="video.html">Shakira - Waka Waka (This Time for Africa)</a></h3>
+                <p>Shakira</p>
+                <p>4,1 Md de vues · il y a 15 ans</p>
+              </div>
+              <button class="icon-btn btn-3-points" type="button" aria-label="Plus d'actions">
+                <span class="material-symbols-outlined" aria-hidden="true">more_vert</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
